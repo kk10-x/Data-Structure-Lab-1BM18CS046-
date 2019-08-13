@@ -10,7 +10,7 @@ void main()
 	clrscr();
 	while(1)
 	{
-	printf("Enter 1 for push,2 for pop,3 for display \n");
+	printf("Enter 1 for push,2 for pop,3 for display,4 for exit \n");
 	scanf("%d",&ch);
 	switch(ch)
 	{
