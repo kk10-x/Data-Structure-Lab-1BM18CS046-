@@ -1,14 +1,20 @@
 #include<stdio.h>
 #define size 10
-void insert(int q[], int *r,int *f, int item)
+void insert(int q[], int *r,int *f, int item,int n)
 {
-   if((*f == *r+1)||(*f == 0 && *r ==  size-1))
+   
+   if((*f == *r+1)||(*f == 0 && *r ==  n-1))
    {
       printf("Queue is full\n");
       return;
    }
+   
+
+
+	
    if(*f == -1)
-   *f = 0;
+  *f = 0;
+
    *r = (*r+1)%size;
    q[*r] = item;
 }
@@ -51,24 +57,20 @@ int main()
    int q[size],j,r,f,i,n,k=1;
    printf("Enter the number of elements:");
    scanf("%d",&n);
-   printf("\nEnter the elements of the queue\n");
-   for(i = 0;i<n;i++)
-   {
-     scanf("%d",&q[i]);
-   }
-   f = 0;
-   r = n-1;
+   
+   f =-1;
+   r = -1;
    while(k!=0)
    {
      printf("\nEnter 0 to exit \nEnter 1 to insert \nEnter 2 to delete \nEnter 3 to display\n");
      scanf("%d",&k);
      switch(k)
      {
-       case 0: printf("Thank you\n");
+       case 0: printf("\n");
 	       break;
        case 1: printf("Enter the number to be inserted \n");
 	       scanf("%d",&j);
-	       insert(q,&r,&f,j);
+	       insert(q,&r,&f,j,n);
 	       break;
        case 2: j = delete(q,&f,&r);
 	       if(j != -9999)
