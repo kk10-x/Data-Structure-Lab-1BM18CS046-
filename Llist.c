@@ -92,22 +92,73 @@ NODE p;
 if(head == NULL)
 {
 printf("List is Empty\n");
-exit(0);
+return;
 }
 printf("Linked List Contents are: \n");
 p = head;
 while(p!=NULL)
 {
-printf("%d\n",p->data);
+printf("%d ",p->data);
 p=p->next;
 }
 return;
 
 }
-
+NODE delbeg(NODE head)
+{
+    
+     NODE p=head;
+     
+     
+     
+     
+     	
+     	NODE q=p->next;
+     	free(p);
+     	head=q;
+     	return head;
+ }    
+     NODE delend(NODE head,int count)
+     {int i;
+     NODE p=head;
+     	for(i=0;p!=NULL&&i<count-1;i++)
+     	{
+     		if(p==NULL&&p->next==NULL)
+     		{
+     			head=NULL;
+     			free(p);
+     			return head;
+     		}
+     		if(p->next->next!=NULL)
+     			p=p->next;
+     		else
+     			p->next=NULL;
+     			return head;
+     	}
+     }
+     NODE delpos(NODE head,int pos)
+     {	int i;
+     NODE p=head;
+     
+     for(i=0;p!=NULL&&i<pos-1;i++)
+     {
+     	if(p==NULL||p->next==NULL)
+     	{
+     		printf("Position is more than the number of nodes\n");
+     		return head;
+     	}
+     	NODE next=p->next->next;
+     	free(p->next);
+     }
+    }
+   
+     	
+     
+     	
 int main()
 {
-int c,item,pos,c1;
+int c,item,pos,c1,count,ch;
+count=0;
 NODE head = (NODE)malloc(sizeof(struct node));
 printf("Enter value of first element:\n");
 scanf("%d",& item);
@@ -115,8 +166,12 @@ head->data = item;
 c=1;
 while(c!=0)
 {
-printf("\nENTER 1 TO INSERT AT FRONT\nENTER 2 TO INSERT AT END\nENTER 3 TO INSERT AT A POSITION\nENTER 4 TO DISPLAY\n");
+printf("\nENTER 1 TO INSERT AT FRONT\nENTER 2 TO INSERT AT END\nENTER 3 TO INSERT AT A POSITION\nENTER 4 TO DISPLAY\nENTER 5 TO DETETE AN NODE\nENTER 6 TO EXIT\n");
 scanf("%d",&c);
+if(c==1||c==2||c==3)
+count++;
+if(c==5)
+count--;
 switch(c)
 {
 case 0:break;
@@ -136,7 +191,25 @@ case 3: printf("Enter the position:\n");
         break;
 case 4: display(head);
         break;
-default: printf("Invalid Entry\n");
+case 5: printf("Where should the node be deleted from?\n1.Beginning\n2.At any node\n3.End\n");
+scanf("%d",&ch);
+if(ch==1)
+{
+head=delbeg(head);
+}
+if(ch==2)
+{printf("Enter the position\n");
+scanf("%d",&pos);
+head=delpos(head,pos);
+}
+if(ch==3)
+{
+head=delend(head,count);
+}
+break;
+
+
+default: exit(0);
 }
 }
 }
