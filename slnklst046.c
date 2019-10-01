@@ -21,7 +21,7 @@ exit(0);
 void display(NODE head){
 	NODE p;
 	if(head == NULL){
-		printf("List is empty\n");
+		printf("stack is empty\n");
 		return;
 	}
 	p = head;
@@ -52,21 +52,23 @@ NODE push(NODE head, int ele){
 }
 NODE pop(NODE head){
     NODE q,p = head;
-	if(head==NULL)
-	printf("\nunderflow\n");
+	if(head==NULL){
+	printf("\n stack underflow\n");
 	return head;
+}
     if(head->next == NULL){
-	printf("%d has bee deleted\n",head->data);    	
+	printf("%d has been deleted\n",head->data);    	
 	head=head->next;    	
 	return head;
     }
-    while((p->next)!=NULL){
-	q=p;    	
-	p = p->next;
-    }
-	printf("%d has bee deleted\n",p->data);    
-	q->next = NULL;
-    return head;
+   while((p->next)->next!=NULL)
+    {
+      p=p->next;
+     }
+     printf("DELTED ELEMENT=%d\n",(p->next)->data);
+      p->next=NULL;
+      return head;
+ 
 }
 int main(){
     NODE head = NULL;
